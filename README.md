@@ -100,6 +100,7 @@ folder), then:
 /feed scan --force "Name"        rescan one profile, bypassing the skip gates
 /feed scan --threshold 6         lower the save bar for one run
 /feed add <profile-url> [note]   track a new profile
+/feed discover [topic]           web-search for new high-signal profiles, approve-to-add
 ```
 
 Pause or remove profiles by editing `watchlist.csv` (Status column).
@@ -138,7 +139,7 @@ uncomment the state-file lines in `.gitignore`.
 
 - [x] v1 — Python agent: Playwright → blocked → custom extension + FastAPI (see Journey above)
 - [x] v2 — markdown rebuild: scan watchlist, native save, daily digest
-- [ ] `/feed discover` — find new high-signal profiles via web search, approve-to-add
+- [x] `/feed discover` — find new high-signal profiles via web search, approve-to-add
 - [ ] `/feed post` — turn saved content angles into post drafts in your voice
 - [ ] golden-dataset scoring checks — a fixed set of posts with expected
       scores, re-run after any change to `interests.md` or `scan.md`
