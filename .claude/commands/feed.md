@@ -11,6 +11,7 @@ arguments.
 | `/feed` (no args) | Show the menu below, plus a one-line status (profiles tracked, last scan date from the newest `digest/` file) |
 | `/feed setup` | Follow `.claude/commands/feed/setup.md` |
 | `/feed scan [...]` | Follow `.claude/commands/feed/scan.md` |
+| `/feed verify [...]` | Follow `.claude/commands/feed/verify.md` |
 | `/feed add [...]` | Follow `.claude/commands/feed/add.md` |
 | `/feed discover [...]` | Follow `.claude/commands/feed/discover.md` |
 | anything else | Show the menu and ask what they meant |
@@ -22,6 +23,7 @@ arguments.
 /feed scan                       scan the watchlist, save qualifying posts, write digest
 /feed scan --force "Name"        rescan one profile, bypassing the 20h / relevance gates
 /feed scan --threshold 6         lower the save threshold for this run (default 7)
+/feed verify                     check every watchlist profile resolves to the right person
 /feed add <profile-url> [note]   add a profile to the watchlist
 /feed discover [topic]           web-search for new high-signal profiles, approve-to-add
 ```

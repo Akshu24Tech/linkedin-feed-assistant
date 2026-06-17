@@ -25,8 +25,9 @@ want a sweep of your watchlist.
 |---|---|
 | `CLAUDE.md` (this file) | Project-wide hard rules, canonical values |
 | `README.md` | Human-readable overview + setup |
-| `.claude/commands/feed/_shared.md` | Shared rules loaded by every `/feed` sub-flow |
-| `.claude/commands/feed/{setup,scan,add}.md` | Per-flow procedures |
+| `.claude/commands/feed/_shared.md` | Shared rules loaded by every `/feed` sub-flow (incl. first-run guard) |
+| `.claude/commands/feed/{setup,scan,verify,add,discover}.md` | Per-flow procedures |
+| `.feed-personalized` | Git-ignored marker: present = current user claimed this copy, so the first-run guard stands down. Absent on fresh clones |
 | `profile/interests.md` | The user's interest profile — what to score posts against |
 | `watchlist.csv` | Tracked profiles + per-profile stats. Source of truth for WHO to scan |
 | `seen_posts.csv` | Every post ever examined. Source of truth for dedup |

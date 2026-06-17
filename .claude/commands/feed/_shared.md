@@ -22,6 +22,43 @@ button**, and **halt on any CAPTCHA / unusual-activity warning**.
 
 ---
 
+## First-run guard (every flow that scans or saves)
+
+Before scanning, make sure this is the user's own watchlist and not the example
+data the project ships with. A fresh installer must never scan the author's
+seeded profiles.
+
+**The seed fingerprint** — the example watchlist shipped with the project:
+
+```
+harrison-chase-961287118, yoheinakajima, andrewyng,
+denny-zhou-7695487, andrej-karpathy-9a650716
+```
+
+**The personalization marker** — a file `.feed-personalized` in the repo root.
+It is git-ignored, so it never ships. Its presence means "the current user has
+claimed this copy as their own." `/feed setup` writes it once the user confirms
+their identity and watchlist.
+
+**Guard procedure:**
+
+1. If `.feed-personalized` exists → this copy is claimed. Skip the guard,
+   proceed.
+2. Else, read `watchlist.csv`. If **3 or more** of the seed-fingerprint vanities
+   are present → this is almost certainly the unmodified example data.
+   **Hard-stop.** Do not scan. Tell the user:
+   > This looks like the project's example watchlist, not yours. Run
+   > `/feed setup` to build your own interest profile and watchlist before
+   > scanning, so you don't scan the author's profiles.
+3. Else (no marker, but the seed data has been replaced) → allow the flow.
+   `/feed setup` will still formalize personalization; this guard's only job is
+   to block the shipped example data.
+
+This guard applies to `scan`. It does **not** apply to `verify` — verifying the
+example data is harmless and read-only.
+
+---
+
 ## Interest profile — `profile/interests.md`
 
 The single source of truth for scoring. Free-form prose/bullets:

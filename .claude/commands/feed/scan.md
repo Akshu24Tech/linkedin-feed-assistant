@@ -7,7 +7,8 @@ Read `_shared.md` first. Arguments:
 
 ## Step 0 — Verify
 
-Run Step 0 from `_shared.md` (Chrome + LinkedIn check). Read
+Run the **First-run guard** from `_shared.md` first. If it hard-stops, do not
+scan. Then run Step 0 from `_shared.md` (Chrome + LinkedIn check). Read
 `profile/interests.md`; if missing/template, stop and run `/feed setup`.
 
 ## Step 1 — Build the scan queue

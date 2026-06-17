@@ -5,6 +5,10 @@ Thumbs.db
 # Local Claude Code state
 .claude/settings.local.json
 
+# Personalization marker — proves the current user claimed this copy.
+# Must never ship, so a fresh clone keeps the first-run guard armed.
+.feed-personalized
+
 # Uncomment if you'd rather keep your reading history private when sharing:
 # digest/
 # seen_posts.csv
