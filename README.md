@@ -125,15 +125,18 @@ is worth joining.
 
 ## Using this for yourself
 
-Fork or clone, then replace the personal state with your own:
+Fork or clone, then run `/feed setup` — it does the work for you:
 
-1. Edit `profile/interests.md` — your name, your high-signal topics, your
-   skip list, your comment voice
-2. Empty the data rows of `watchlist.csv` and `seen_posts.csv`, clear `digest/`
-3. Run `/feed setup` and add your own profiles
+1. It bootstraps your personal state from the shipped templates
+   (`watchlist.example.csv`, `seen_posts.example.csv`,
+   `profile/interests.example.md`).
+2. It interviews you to build `profile/interests.md` in your voice.
+3. It has you add your own profiles, then claims the copy as yours.
 
-If you'd rather keep your reading history private while sharing the project,
-uncomment the state-file lines in `.gitignore`.
+The personal state files (`watchlist.csv`, `seen_posts.csv`,
+`profile/interests.md`, `digest/*.md`) are git-ignored, so they never ship and
+your reading history stays on your machine. Only the templates are tracked. A
+fresh clone is incapable of scanning anyone else's profiles until you set it up.
 
 ## Roadmap (one iteration at a time)
 

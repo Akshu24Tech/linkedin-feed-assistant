@@ -6,6 +6,36 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 
 ---
 
+## 2026-06-17 — Ship templates, keep personal state local (T2-#7)
+
+**Done:**
+
+- Untracked the personal state from the repo (still on the owner's disk):
+  `watchlist.csv`, `seen_posts.csv`, `profile/interests.md`, `digest/*.md` are
+  now git-ignored.
+- Added shipped templates: `watchlist.example.csv` (header + one obvious
+  placeholder row), `seen_posts.example.csv` (header), and
+  `profile/interests.example.md` (generic template). These are what a fresh
+  clone gets.
+- `setup.md` Step 1 now bootstraps the real files from the templates (and
+  strips the placeholder watchlist row) instead of inventing rows.
+- Updated README "Using this for yourself" and the CLAUDE.md file map to the
+  template model.
+- Net effect: a fresh clone ships **no** real profiles or reading history. It
+  literally cannot scan anyone until the user runs setup.
+
+**Not done / known gaps:**
+
+- Git **history** still contains the previously-committed real watchlist /
+  digest / interests (they were public on GitHub already). Untracking stops
+  future shipping but does not scrub history. Decide under T2-#8 whether that
+  matters (the seed profiles are public figures; the digest/interests are
+  mildly personal, not secret).
+- Still no clean-clone dry run proving setup bootstraps correctly from a bare
+  checkout. That's the combined #5/#6/#7 exit test.
+
+---
+
 ## 2026-06-17 — Idempotent `/feed setup` that arms the guard
 
 **Done:**
@@ -77,7 +107,7 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 
 - [x] #5 Make `/feed setup` idempotent and state-free; writes `.feed-personalized` (built 2026-06-17; clean-clone test pending)
 - [x] #6 Add first-run guard against seed data (built 2026-06-17)
-- [ ] #7 Separate user state from shipped logic (ship empty-template csv/interests)
+- [x] #7 Separate user state from shipped logic; personal files git-ignored, templates ship (built 2026-06-17; clean-clone test pending)
 - [ ] #8 Audit repo for credential/state leakage (grep, not memory)
 
 **Exit test:** a person who is not the author can clone this, run `/feed setup`,

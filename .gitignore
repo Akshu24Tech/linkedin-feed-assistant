@@ -9,7 +9,11 @@ Thumbs.db
 # Must never ship, so a fresh clone keeps the first-run guard armed.
 .feed-personalized
 
-# Uncomment if you'd rather keep your reading history private when sharing:
-# digest/
-# seen_posts.csv
-# watchlist.csv
+# Personal state — never shipped. Templates ship as *.example.* instead.
+# Your real files live only on your disk; a fresh clone bootstraps them
+# from the templates via `/feed setup`.
+watchlist.csv
+seen_posts.csv
+profile/interests.md
+digest/*.md
+!digest/.gitkeep

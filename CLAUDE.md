@@ -28,10 +28,11 @@ want a sweep of your watchlist.
 | `.claude/commands/feed/_shared.md` | Shared rules loaded by every `/feed` sub-flow (incl. first-run guard) |
 | `.claude/commands/feed/{setup,scan,verify,add,discover}.md` | Per-flow procedures |
 | `.feed-personalized` | Git-ignored marker: present = current user claimed this copy, so the first-run guard stands down. Absent on fresh clones |
-| `profile/interests.md` | The user's interest profile — what to score posts against |
-| `watchlist.csv` | Tracked profiles + per-profile stats. Source of truth for WHO to scan |
-| `seen_posts.csv` | Every post ever examined. Source of truth for dedup |
-| `digest/YYYY-MM-DD.md` | One file per scan day: analysis of posts that were saved |
+| `*.example.*` (`watchlist.example.csv`, `seen_posts.example.csv`, `profile/interests.example.md`) | Shipped templates. `/feed setup` bootstraps the real files from these |
+| `profile/interests.md` | The user's interest profile — what to score posts against. **Git-ignored** (personal) |
+| `watchlist.csv` | Tracked profiles + per-profile stats. Source of truth for WHO to scan. **Git-ignored** (personal) |
+| `seen_posts.csv` | Every post ever examined. Source of truth for dedup. **Git-ignored** (personal) |
+| `digest/YYYY-MM-DD.md` | One file per scan day: analysis of posts that were saved. **Git-ignored** (personal) |
 
 ## Hard rules
 

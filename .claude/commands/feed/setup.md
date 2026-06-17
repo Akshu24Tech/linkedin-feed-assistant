@@ -18,11 +18,21 @@ Decide which mode you're in before doing anything:
   is armed. Your job this run is to get the user to a state where claiming the
   copy is honest, then write the marker.
 
-## Step 1 — Workspace check
+## Step 1 — Workspace check (bootstrap from templates)
 
-Confirm `watchlist.csv`, `seen_posts.csv`, `profile/interests.md`, and
-`digest/` exist. Recreate any missing file from the formats in `_shared.md`
-(headers only, no invented rows).
+The personal state files are git-ignored and do not ship — a fresh clone only
+has the `*.example.*` templates. Bootstrap the real files if missing:
+
+- `watchlist.csv` ← copy `watchlist.example.csv`, then **delete the placeholder
+  example row** (keep the header).
+- `seen_posts.csv` ← copy `seen_posts.example.csv` (header only).
+- `profile/interests.md` ← copy `profile/interests.example.md` (this counts as
+  "still the template" in Step 3 until the user fills it in).
+- `digest/` already exists (`digest/.gitkeep`); leave it empty.
+
+Never invent watchlist rows during bootstrap. A bootstrapped watchlist is
+empty (header only), which the first-run guard treats as unclaimed until the
+user adds their own profiles in Step 4.
 
 ## Step 2 — Chrome + LinkedIn
 
