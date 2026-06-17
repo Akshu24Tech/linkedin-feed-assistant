@@ -6,6 +6,32 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 
 ---
 
+## 2026-06-17 — Clean-clone test + credential audit (T2-#8)
+
+**Done:**
+
+- **Clean-clone dry run.** Cloned the repo fresh from GitHub. Result: ships only
+  the 6 command files + 3 templates + docs + `digest/.gitkeep`. `watchlist.csv`,
+  `seen_posts.csv`, `profile/interests.md`, and `.feed-personalized` are all
+  **absent**. A fresh clone has no real profiles and no marker, so the first-run
+  guard would block `/feed scan` until setup runs. #5 + #6 + #7 validated
+  together.
+- **Credential audit (T2-#8): PASS.** Grepped both the current tree and the full
+  git history for secrets (password, api key, bearer, `li_at`, `JSESSIONID`,
+  client_secret, private keys, AWS/GitHub/OpenAI key formats) and PII (emails,
+  phone numbers). **Zero matches anywhere.** No credentials have ever been
+  committed.
+
+**Known gaps (non-blocking):**
+
+- Git history still contains the non-secret personal files removed in #7
+  (`watchlist.csv` = public-figure profiles, `seen_posts.csv` + `digest/` =
+  reading history, `interests.md` = the owner's public name + interest topics).
+  None of it is sensitive and no email/phone is present, so **no history scrub
+  is warranted**. Decision: leave history intact.
+
+---
+
 ## 2026-06-17 — Ship templates, keep personal state local (T2-#7)
 
 **Done:**
@@ -108,7 +134,7 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 - [x] #5 Make `/feed setup` idempotent and state-free; writes `.feed-personalized` (built 2026-06-17; clean-clone test pending)
 - [x] #6 Add first-run guard against seed data (built 2026-06-17)
 - [x] #7 Separate user state from shipped logic; personal files git-ignored, templates ship (built 2026-06-17; clean-clone test pending)
-- [ ] #8 Audit repo for credential/state leakage (grep, not memory)
+- [x] #8 Audit repo for credential/state leakage — PASS, zero secrets in tree or history (2026-06-17)
 
 **Exit test:** a person who is not the author can clone this, run `/feed setup`,
 and get a correct first scan against *their own* watchlist — without the author
