@@ -1,7 +1,6 @@
 # Interest profile
 
-Source of truth for post scoring and comment-draft voice. Edit freely, or
-rebuild it with `/feed setup`.
+Source of truth for post scoring and comment-draft voice. Edit freely, or rebuild it with `/feed setup`.
 
 > Seeded from the previous Python agent's interest profile. Verify the `## Me`
 > name and adjust anything that has drifted.

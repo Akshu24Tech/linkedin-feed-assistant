@@ -6,6 +6,33 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 
 ---
 
+## 2026-06-17 — Idempotent `/feed setup` that arms the guard
+
+**Done:**
+
+- **`/feed setup` rewritten (gate task T2-#5).** Now idempotent and it writes
+  the `.feed-personalized` marker — the missing half of the first-run guard.
+  - Step 0 reads personalization state (claimed vs fresh/unclaimed) and branches.
+  - Step 4 detects the shipped seed fingerprint in `watchlist.csv` and makes the
+    user clear it before adding their own profiles. A fresh install can't keep
+    the author's list.
+  - Step 5 only writes `.feed-personalized` when claiming is honest: the user's
+    own interests profile AND a non-empty, non-seed watchlist. Otherwise it
+    blocks and says exactly what's missing.
+  - Re-runs never clobber real content or delete the marker.
+- Net effect: the guard is now self-arming. A new user runs `/feed setup`,
+  personalizes, gets claimed; until then `/feed scan` stays blocked.
+
+**Not done / known gaps:**
+
+- Still untested end to end — no clean-clone dry run yet to confirm a fresh
+  install is genuinely blocked until setup completes (that's the T2-#5 exit
+  check and overlaps the #7 / clean-clone work).
+- `watchlist.csv` / `interests.md` are still shipped with the owner's real data,
+  not empty templates — that's T2-#7, still open.
+
+---
+
 ## 2026-06-17 — First-run guard + `/feed verify`
 
 **Done:**
@@ -48,7 +75,7 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 
 ### Tier 2 — Decoupling (safe for someone who isn't you)
 
-- [ ] #5 Make `/feed setup` idempotent and state-free (also: write `.feed-personalized`)
+- [x] #5 Make `/feed setup` idempotent and state-free; writes `.feed-personalized` (built 2026-06-17; clean-clone test pending)
 - [x] #6 Add first-run guard against seed data (built 2026-06-17)
 - [ ] #7 Separate user state from shipped logic (ship empty-template csv/interests)
 - [ ] #8 Audit repo for credential/state leakage (grep, not memory)
