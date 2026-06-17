@@ -1,6 +1,11 @@
 Name,Vanity,Profile URL,Note,Status,Added,Last Checked,Times Checked,Avg Score
-Harrison Chase,harrison-chase-961287118,https://www.linkedin.com/in/harrison-chase-961287118,LangChain/LangGraph founder driving agent infrastructure,active,2026-06-12,2026-06-12 19:07,1,5.5
-Yohei Nakajima,yoheinakajima,https://www.linkedin.com/in/yoheinakajima,Creator of BabyAGI and experimental agent architectures,active,2026-06-12,2026-06-12 19:07,1,4.5
-Andrew Ng,andrewyng,https://www.linkedin.com/in/andrewyng,DeepLearning.AI founder and major advocate for agentic design patterns,active,2026-06-12,2026-06-12 19:07,1,6.0
-Denny Zhou,denny-zhou-7695487,https://www.linkedin.com/in/denny-zhou-7695487,Google DeepMind Reasoning Team lead pioneering LLM logic frameworks,active,2026-06-12,2026-06-12 19:07,1,
-Andrej Karpathy,andrej-karpathy-9a650716,https://www.linkedin.com/in/andrej-karpathy-9a650716,,active,2026-06-12,2026-06-12 19:07,1,
+Harrison Chase,harrison-chase-961287118,https://www.linkedin.com/in/harrison-chase-961287118,LangChain/LangGraph founder driving agent infrastructure,active,2026-06-12,2026-06-17 10:08,2,6.1
+Yohei Nakajima,yoheinakajima,https://www.linkedin.com/in/yoheinakajima,Creator of BabyAGI and experimental agent architectures,active,2026-06-12,2026-06-17 10:08,2,4.5
+Andrew Ng,andrewyng,https://www.linkedin.com/in/andrewyng,DeepLearning.AI founder and major advocate for agentic design patterns,active,2026-06-12,2026-06-17 10:08,2,5.7
+Denny Zhou,denny-zhou-7695487,https://www.linkedin.com/in/denny-zhou-7695487,Google DeepMind Reasoning Team lead pioneering LLM logic frameworks,active,2026-06-12,2026-06-17 10:08,2,
+Andrej Karpathy,andrej-karpathy-9a650716,https://www.linkedin.com/in/andrej-karpathy-9a650716,,active,2026-06-12,2026-06-17 10:08,2,
+Jacob Lee,jacoblee93,https://www.linkedin.com/in/jacoblee93,LangChain founding engineer; mostly reshares LangChain content,active,2026-06-12,2026-06-17 10:08,1,4.4
+Jerry Liu,jerry-liu-64390071,https://www.linkedin.com/in/jerry-liu-64390071,LlamaIndex CEO; posts on production RAG and retrieval,active,2026-06-12,2026-06-17 10:08,1,4.2
+Aparna Dhinakaran,aparnadhinakaran,https://www.linkedin.com/in/aparnadhinakaran,Arize AI co-founder; AI observability and agent eval/tracing,active,2026-06-12,2026-06-17 10:08,1,4.0
+Jithin James,jjmachan,https://www.linkedin.com/in/jjmachan,RAGAS chief maintainer (now Vibrant Labs YC W24); agent eval/benchmarks,active,2026-06-12,2026-06-17 10:08,1,4.4
+Div Garg,div99,https://www.linkedin.com/in/div99,AGI Inc founder (ex-MultiOn); on-device inference and computer-use agents,active,2026-06-12,2026-06-17 10:08,1,4.8
