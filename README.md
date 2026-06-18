@@ -1,5 +1,12 @@
 # LinkedIn Feed Assistant
 
+> **Status: v1 complete and working. Paused on purpose.**
+> The agent does what it set out to do. Further work is deliberately not
+> pursued because LinkedIn actively fights browser automation and changes its
+> rules without notice, which makes ongoing hardening a losing maintenance war.
+> See [Why this is paused](#why-this-is-paused) and `PROGRESS.md`. Resumable
+> any time if that calculus changes.
+
 An AI agent that watches the LinkedIn profiles you care about, scores their
 posts against your interests, **saves the good ones natively in LinkedIn**
 (My Items → Saved posts), and writes a local digest with what LinkedIn can't
@@ -138,15 +145,56 @@ The personal state files (`watchlist.csv`, `seen_posts.csv`,
 your reading history stays on your machine. Only the templates are tracked. A
 fresh clone is incapable of scanning anyone else's profiles until you set it up.
 
-## Roadmap (one iteration at a time)
+## What shipped (done)
 
 - [x] v1 — Python agent: Playwright → blocked → custom extension + FastAPI (see Journey above)
 - [x] v2 — markdown rebuild: scan watchlist, native save, daily digest
 - [x] `/feed discover` — find new high-signal profiles via web search, approve-to-add
-- [ ] `/feed post` — turn saved content angles into post drafts in your voice
-- [ ] golden-dataset scoring checks — a fixed set of posts with expected
-      scores, re-run after any change to `interests.md` or `scan.md`
-- [ ] package as an installable Claude Code plugin
+- [x] `/feed verify` — check every tracked profile resolves to the right person (tested working)
+- [x] Productionization pass — first-run guard, idempotent setup, personal state
+      separated from shipped templates, repo + git history audited clean of secrets
+
+## Deliberately out of scope (paused, not abandoned)
+
+These were scoped and consciously declined, not forgotten. Each would require
+sustained live automation against LinkedIn, which is exactly the cost the pause
+decision avoids.
+
+- `/feed post` — turn saved content angles into post drafts in your voice
+- golden-dataset scoring checks — a fixed set of posts with expected scores
+- 10-day reliability soak — prove the gates and incident-handling over real use
+- package as an installable Claude Code plugin
+
+## Why this is paused
+
+The agent works. Stopping here is a decision, not a failure.
+
+LinkedIn actively fights browser automation and changes its frontend and rules
+without notice. v1 already survived that once: the original Python agent died
+when DOM scraping, the Voyager REST API, and the Voyager GraphQL API were each
+blocked in turn. The markdown rebuild dodged that by using a real logged-in
+session at human pace, but the underlying truth did not change. Building on top
+of a platform that can silently break you is renting, not owning. Every hour
+spent hardening this can be erased by one deploy on their side. That is an
+unbounded maintenance war against a hostile dependency, and the senior move is
+to not fight it.
+
+So v1 ships, it works, and it is paused on purpose.
+
+## What I'd carry forward
+
+The LinkedIn code was never the real point. The transferable skill is the part
+that survives this project: how you take a tool from "works on my machine" to
+"safe for a stranger to run." That pattern, proven here, is reusable on any
+future project:
+
+- A **verify** step that validates external assumptions before trusting them
+- A **first-run guard** so a fresh install can never act on the author's data
+- **Personal state separated from shipped code** (git-ignored data, shipped templates)
+- A **credential/PII audit** of the working tree and full git history
+
+That is what I keep. See `PROGRESS.md` for the full build log and the gate that
+defined "done enough to share."
 
 ---
 

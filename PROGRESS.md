@@ -1,8 +1,50 @@
 # Progress log — LinkedIn Feed Assistant
 
-A running record of what we're building and why. Newest entries on top. The
-big arc right now is the **packaging gate**: the work that has to be true before
-this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
+A running record of what we built and why. Newest entries on top.
+
+**Status: paused after v1 (2026-06-18).** See the top entry for the decision and
+reason. The arc that drove most of this log was the **packaging gate** (the work
+required before this would be worth shipping as a plugin); Tier 2 was completed,
+Tier 1 was deliberately not pursued. See "The packaging gate" below.
+
+---
+
+## 2026-06-18 — Project paused (v1 complete)
+
+**Decision:** Pause the LinkedIn Feed Assistant after v1. Not abandoned —
+deliberately stopped, resumable later.
+
+**Why:** LinkedIn actively fights browser automation and changes its frontend
+and rules without notice (v1's Python ancestor already died to exactly this:
+DOM scraping → Voyager REST → Voyager GraphQL all blocked in turn). The
+markdown rebuild lowered the risk by using a real session at human pace, but
+the underlying dependency is still hostile. Further hardening is an unbounded
+maintenance war against a platform that can silently break it. Stopping is the
+senior call.
+
+**Live test note:** `/feed verify` was run against a real account and worked
+correctly. Separately, repeated "confirm it's you" checkpoints appeared while
+testing on a *brand-new unverified* throwaway account — expected behavior for a
+new account, not evidence the tool looks like a bot, and the tool correctly
+**halted on every checkpoint** (hard rule #2). That halt-on-pushback behavior
+is the partial evidence for #4; the full 10-day soak is being declined, not
+failed.
+
+**Final gate status:**
+
+- Tier 2 (Decoupling): **complete and verified** (#5, #6, #7, #8).
+- Tier 1 (Reliability): #2 verify done + tested. #1 (10-day soak), #3 (gates
+  firing live), #4 (incident-handling fully exercised) **deliberately not
+  pursued** — they require sustained live automation, which is the cost the
+  pause avoids.
+
+**What carries forward (the actual asset):** the productionization pattern for
+taking a personal tool to safe-to-share — verify external assumptions,
+first-run guard, personal-state/template separation, credential+PII audit of
+tree and history. Reusable on the next project. The LinkedIn code is not.
+
+This closes the active log. Reopen with a new dated entry if the project
+resumes.
 
 ---
 
@@ -125,7 +167,7 @@ this is worth shipping as a Claude Code plugin (see "The packaging gate" below).
 ### Tier 1 — Reliability (prove it survives use)
 
 - [ ] #1 Run `/feed scan` on ≥10 separate days
-- [x] #2 Add `/feed verify` to validate watchlist URLs (built 2026-06-17; live test pending)
+- [x] #2 Add `/feed verify` to validate watchlist URLs (built + live-tested working 2026-06-17)
 - [ ] #3 Observe both token gates (freshness + relevance) firing live
 - [ ] #4 Prove incident-handling paths (CAPTCHA halt, mis-click recovery) work
 
